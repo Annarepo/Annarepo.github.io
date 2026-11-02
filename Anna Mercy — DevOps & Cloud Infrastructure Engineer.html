@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anna Mercy — DevOps &amp; Cloud Infrastructure Engineer</title>
+<meta name="description" content="Certified Kubernetes Administrator with four years of multi-cloud infrastructure experience. Terraform, Ansible, EKS, GitHub Actions, ArgoCD, Prometheus and Grafana.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDF0F4; --paper-2:#E3E8EF;
+    --ink:#16243A; --ink-soft:#4A5B75;
+    --rule:#C3CDDB; --signal:#0E7C86; --amber:#A85A16;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#101722; --paper-2:#17202D;
+      --ink:#DDE5EF; --ink-soft:#93A3B8;
+      --rule:#2C3A4D; --signal:#3FBCC4; --amber:#D99244;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#101722; --paper-2:#17202D;
+    --ink:#DDE5EF; --ink-soft:#93A3B8;
+    --rule:#2C3A4D; --signal:#3FBCC4; --amber:#D99244;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Source Serif 4",Georgia,serif;
+    font-size:1.0625rem;line-height:1.65;
+  }
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
+  .wrap{width:min(1080px,92vw);margin-inline:auto}
+  h1,h2,h3,h4,.ui{font-family:Archivo,"Helvetica Neue",Arial,sans-serif;font-weight:600}
+  h2{font-size:clamp(1.35rem,2.4vw,1.75rem);letter-spacing:-.015em;margin:0 0 .3rem}
+  h3{font-size:1.15rem;letter-spacing:-.01em;margin:0}
+
+  /* masthead */
+  .masthead{border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:20;
+    background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px)}
+  .masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 0}
+  .mark{font-family:Archivo,sans-serif;font-weight:700;letter-spacing:-.02em;font-size:1.02rem;text-decoration:none}
+  .mark span{color:var(--signal)}
+  .navlinks{display:flex;gap:1.15rem;font-family:Archivo,sans-serif;font-size:.88rem;font-weight:500}
+  .navlinks a{color:var(--ink-soft);text-decoration:none;padding:.2rem 0;border-bottom:1px solid transparent}
+  .navlinks a:hover{color:var(--ink);border-bottom-color:var(--signal)}
+  @media (max-width:760px){.navlinks{display:none}}
+
+  /* hero */
+  .hero{padding:clamp(2.75rem,7vw,5rem) 0 clamp(1.75rem,4vw,2.75rem)}
+  .cka{display:inline-flex;align-items:center;gap:.45rem;font-family:Archivo,sans-serif;
+    font-size:.82rem;font-weight:600;color:var(--signal);margin-bottom:1rem}
+  .cka::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:var(--signal)}
+  .hero h1{font-size:clamp(2rem,5.6vw,3.6rem);line-height:1.04;letter-spacing:-.035em;
+    font-weight:700;margin:0 0 1rem;max-width:18ch}
+  .lede{font-size:clamp(1.02rem,1.9vw,1.24rem);color:var(--ink-soft);max-width:58ch;margin:0 0 1.6rem}
+  .lede strong{color:var(--ink);font-weight:600}
+  .actions{display:flex;flex-wrap:wrap;gap:.6rem}
+  .btn{font-family:Archivo,sans-serif;font-size:.92rem;font-weight:600;text-decoration:none;
+    padding:.58rem 1.05rem;border-radius:3px;border:1px solid var(--ink);color:var(--paper);background:var(--ink)}
+  .btn:hover{background:var(--signal);border-color:var(--signal);color:#fff}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+  .btn.ghost:hover{border-color:var(--signal);color:var(--signal);background:transparent}
+
+  /* schematic */
+  .schematic{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    background:var(--paper-2);padding:1.5rem 0 1.35rem}
+  .schematic-head{font-family:Archivo,sans-serif;font-size:.79rem;font-weight:600;
+    color:var(--ink-soft);margin:0 0 1rem}
+  .stages{display:flex;gap:0;overflow-x:auto;padding-bottom:.3rem}
+  .stage{flex:1 0 auto;min-width:124px;position:relative;padding-right:1rem}
+  .stage:not(:last-child)::after{content:"";position:absolute;right:.35rem;top:1.1rem;
+    width:.52rem;height:.52rem;border-top:1.5px solid var(--rule);border-right:1.5px solid var(--rule);
+    transform:rotate(45deg)}
+  .stage-n{font-family:Archivo,sans-serif;font-size:.71rem;font-weight:700;color:var(--signal);display:block;margin-bottom:.28rem}
+  .stage-t{font-family:Archivo,sans-serif;font-weight:600;font-size:.93rem;display:block;line-height:1.25}
+  .stage-d{font-size:.81rem;color:var(--ink-soft);display:block;margin-top:.18rem;line-height:1.4}
+  .stage-fill{height:2px;background:var(--rule);margin-top:.65rem;position:relative;overflow:hidden}
+  .stage-fill::before{content:"";position:absolute;inset:0;background:var(--signal);
+    transform-origin:left;transform:scaleX(0);animation:draw .48s ease-out forwards}
+  .stage:nth-child(1) .stage-fill::before{animation-delay:.15s}
+  .stage:nth-child(2) .stage-fill::before{animation-delay:.4s}
+  .stage:nth-child(3) .stage-fill::before{animation-delay:.65s}
+  .stage:nth-child(4) .stage-fill::before{animation-delay:.9s}
+  .stage:nth-child(5) .stage-fill::before{animation-delay:1.15s}
+  .stage:nth-child(6) .stage-fill::before{animation-delay:1.4s}
+  @keyframes draw{to{transform:scaleX(1)}}
+  @media (prefers-reduced-motion: reduce){.stage-fill::before{animation:none;transform:scaleX(1)}}
+
+  section{padding:clamp(2.5rem,5.5vw,4rem) 0}
+  .sec-head{margin-bottom:1.9rem;max-width:64ch}
+  .sec-head p{color:var(--ink-soft);margin:.12rem 0 0}
+
+  /* experience */
+  .job{border-top:1px solid var(--rule);padding-block:1.75rem;
+    display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:1.4rem 2.5rem}
+  .job:first-of-type{border-top:2px solid var(--ink)}
+  @media (max-width:760px){.job{grid-template-columns:1fr;gap:.85rem}}
+  .job-meta .role{font-family:Archivo,sans-serif;font-weight:600;font-size:1.05rem;display:block;letter-spacing:-.01em}
+  .job-meta .co{color:var(--signal);font-family:Archivo,sans-serif;font-weight:600;font-size:.95rem;display:block;margin-top:.1rem}
+  .job-meta .when{font-family:Archivo,sans-serif;font-size:.85rem;color:var(--ink-soft);display:block;margin-top:.35rem}
+  .job ul{margin:0;padding-left:1.1rem}
+  .job li{margin-bottom:.5rem;max-width:66ch}
+  .job li:last-child{margin-bottom:0}
+
+  /* projects */
+  .project{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+    gap:clamp(1.1rem,3.5vw,2.75rem);padding-block:2rem;border-top:1px solid var(--rule)}
+  .project:first-of-type{border-top:2px solid var(--ink)}
+  @media (max-width:760px){.project{grid-template-columns:1fr;gap:1.25rem}}
+  .project h3{margin-bottom:.45rem;font-size:clamp(1.2rem,2.5vw,1.5rem);letter-spacing:-.02em}
+  .project p{margin:.55rem 0;max-width:62ch}
+  .p-links{display:flex;flex-wrap:wrap;gap:1rem;margin-top:.9rem;font-family:Archivo,sans-serif;font-size:.88rem;font-weight:600}
+  .p-links a{color:var(--signal);text-decoration:none;border-bottom:1px solid transparent}
+  .p-links a:hover{border-bottom-color:var(--signal)}
+  .flow{background:var(--paper-2);border:1px solid var(--rule);padding:1.05rem 1.1rem;border-radius:3px;align-self:start}
+  .flow h4{font-size:.78rem;font-weight:600;color:var(--ink-soft);margin:0 0 .75rem}
+  .flow ol{list-style:none;margin:0;padding:0;font-family:Archivo,sans-serif;font-size:.87rem}
+  .flow li{position:relative;padding:0 0 .8rem 1.1rem;line-height:1.4}
+  .flow li:last-child{padding-bottom:0}
+  .flow li::before{content:"";position:absolute;left:0;top:.43rem;width:7px;height:7px;border-radius:50%;background:var(--signal)}
+  .flow li:not(:last-child)::after{content:"";position:absolute;left:3px;top:1rem;bottom:.12rem;width:1px;background:var(--rule)}
+  .flow li b{font-weight:600;display:block}
+  .flow li em{font-style:normal;color:var(--ink-soft);font-size:.82rem}
+
+  /* skills */
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.6rem 2.25rem}
+  .skillgroup h4{font-size:.95rem;margin:0 0 .5rem;padding-bottom:.35rem;border-bottom:1px solid var(--rule)}
+  .skillgroup ul{list-style:none;margin:0;padding:0;font-family:Archivo,sans-serif;font-size:.9rem}
+  .skillgroup li{padding:.2rem 0;color:var(--ink-soft)}
+  .skillgroup li b{color:var(--ink);font-weight:500}
+
+  /* credentials */
+  .creds{background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .credgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem 2.5rem;margin-top:1.2rem}
+  .credgrid h4{font-size:.95rem;margin:0 0 .6rem;padding-bottom:.35rem;border-bottom:1px solid var(--rule)}
+  .credgrid ul{list-style:none;margin:0;padding:0}
+  .credgrid li{padding:.3rem 0;max-width:40ch}
+  .credgrid li b{font-family:Archivo,sans-serif;font-weight:600;font-size:.95rem;display:block}
+  .credgrid li span{color:var(--ink-soft);font-size:.88rem}
+
+  /* contact */
+  .contact{padding-block:clamp(2.75rem,6vw,4.25rem)}
+  .contact h2{font-size:clamp(1.55rem,3.8vw,2.3rem);letter-spacing:-.03em;max-width:22ch}
+  .contact p{color:var(--ink-soft);max-width:54ch}
+  .contactlist{display:flex;flex-wrap:wrap;gap:.55rem 2rem;margin-top:1.4rem;
+    font-family:Archivo,sans-serif;font-size:1rem;font-weight:500}
+  .contactlist a{color:var(--signal);text-decoration:none;border-bottom:1px solid transparent}
+  .contactlist a:hover{border-bottom-color:var(--signal)}
+  footer{border-top:1px solid var(--rule);padding:1.3rem 0 2.25rem;
+    font-family:Archivo,sans-serif;font-size:.82rem;color:var(--ink-soft)}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="mark" href="#top">Anna Mercy<span>.</span></a>
+    <nav class="navlinks">
+      <a href="#experience">Experience</a>
+      <a href="#work">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="hero wrap">
+    <p class="cka">Certified Kubernetes Administrator</p>
+    <h1>I keep clusters running and pipelines honest.</h1>
+    <p class="lede">DevOps and cloud infrastructure engineer in Kochi. Four years managing <strong>Kubernetes across AWS, GCP and Azure</strong> — provisioning with Terraform, automating recovery with Ansible, and building GitOps delivery with GitHub Actions and ArgoCD.</p>
+    <div class="actions">
+      <a class="btn" href="#work">See the projects</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="schematic">
+    <div class="wrap">
+      <p class="schematic-head">How code reaches production in the pipelines I build</p>
+      <div class="stages">
+        <div class="stage"><span class="stage-n">01</span><span class="stage-t">Push</span><span class="stage-d">Commit lands in GitHub</span><div class="stage-fill"></div></div>
+        <div class="stage"><span class="stage-n">02</span><span class="stage-t">Build</span><span class="stage-d">Actions builds and tests</span><div class="stage-fill"></div></div>
+        <div class="stage"><span class="stage-n">03</span><span class="stage-t">Publish</span><span class="stage-d">Tagged image to registry</span><div class="stage-fill"></div></div>
+        <div class="stage"><span class="stage-n">04</span><span class="stage-t">Version</span><span class="stage-d">Helm values updated in Git</span><div class="stage-fill"></div></div>
+        <div class="stage"><span class="stage-n">05</span><span class="stage-t">Sync</span><span class="stage-d">ArgoCD reconciles the cluster</span><div class="stage-fill"></div></div>
+        <div class="stage"><span class="stage-n">06</span><span class="stage-t">Watch</span><span class="stage-d">Prometheus and Grafana</span><div class="stage-fill"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="experience" class="wrap">
+    <div class="sec-head">
+      <h2>Experience</h2>
+      <p>Four years of production support and infrastructure work, largely in security and certificate infrastructure where downtime is not an option.</p>
+    </div>
+
+    <article class="job">
+      <div class="job-meta">
+        <span class="role">Solution Support Engineer</span>
+        <span class="co">AppViewX</span>
+        <span class="when">Coimbatore · May 2025 – Jan 2026</span>
+      </div>
+      <ul>
+        <li>Supported enterprise customers on the Certificate Lifecycle Management platform, troubleshooting discovery, issuance, renewal and revocation across public and private certificate authorities.</li>
+        <li>Resolved integration issues in the Windows Gateway component — certificate binding and discovery on IIS and SQL Server — and automated certificate deployment across Windows Server estates.</li>
+        <li>Integrated the platform with network and security infrastructure, including firewall appliances, so certificate rotation stayed uninterrupted for internet-facing and internal services.</li>
+        <li>Supported blue-green upgrades for enterprise customers, coordinating upgrade validation and rollback planning to keep downtime near zero during version migrations.</li>
+        <li>Helped customers running the platform inside Kubernetes, troubleshooting in-cluster agent and connector connectivity and guiding certificate lifecycle automation.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <div class="job-meta">
+        <span class="role">Product Support Engineer</span>
+        <span class="co">Fortanix</span>
+        <span class="when">Bengaluru · Apr 2022 – May 2025</span>
+      </div>
+      <ul>
+        <li>Provisioned and managed cloud infrastructure with Terraform across AWS, GCP and Azure, and automated disaster-recovery procedures with Ansible playbooks — cutting manual intervention and shortening recovery time.</li>
+        <li>Built backup and restore mechanisms for Kubernetes clusters across multi-cloud environments, targeting Azure Blob Storage, AWS S3 and SCP servers.</li>
+        <li>Managed Kubernetes clusters on all three clouds including version upgrades, and ran failover tests against F5 load balancers to prove high availability and traffic routing held up.</li>
+        <li>Configured monitoring and alerting with Prometheus, Grafana and Sensu for continuous visibility into cluster and network health.</li>
+        <li>Wrote Python and Bash automation for routine system management, and used REST APIs to drive cryptographic operations on hardware security modules.</li>
+        <li>Oversaw SSL/TLS certificate lifecycle and key rotation to keep critical applications compliant with PKI policy.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Projects</h2>
+        <p>Self-directed AWS and Kubernetes work, built from scratch rather than cloned. Each one exists to answer a question I couldn't answer from documentation alone.</p>
+      </div>
+
+      <article class="project">
+        <div>
+          <h3>Three-tier microservices platform on Amazon EKS</h3>
+          <p>A three-tier application running on EKS with the entire environment — VPC, subnets and managed node groups — provisioned by Terraform rather than clicked together in the console. Node groups are spread across multiple availability zones so no single AZ failure takes the application down.</p>
+          <p>Delivery runs the same way it does in the pipeline above: GitHub Actions builds, tests and publishes images, then ArgoCD reconciles the cluster declaratively from Git. Cluster monitoring gives real-time visibility into application and infrastructure health.</p>
+          <div class="p-links">
+            <a href="#contact">Repository</a>
+            <a href="#contact">Architecture notes</a>
+          </div>
+        </div>
+        <aside class="flow">
+          <h4>What's in it</h4>
+          <ol>
+            <li><b>Terraform</b><em>VPC, subnets, managed node groups</em></li>
+            <li><b>Amazon EKS</b><em>Multi-AZ for high availability</em></li>
+            <li><b>Python / FastAPI</b><em>Service tier between web and data</em></li>
+            <li><b>GitHub Actions</b><em>Build, test, publish images</em></li>
+            <li><b>ArgoCD</b><em>Declarative GitOps deployment</em></li>
+          </ol>
+        </aside>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>End-to-end Kubernetes CI/CD pipeline</h3>
+          <p>A complete containerised deployment pipeline written from the ground up — Docker images pushed to a private registry, raw Kubernetes manifests for Deployment, Service and Ingress, and a Helm chart for templated releases.</p>
+          <p>The interesting part is the handoff between CI and CD. Instead of letting the pipeline run <code>kubectl apply</code>, GitHub Actions updates the image tag in the Helm chart and commits it back, and ArgoCD takes it from there. Git stays the single source of truth, and a rollback is just a revert.</p>
+          <div class="p-links">
+            <a href="https://github.com/Annarepo/Devops-Project.git">Repository</a>
+          </div>
+        </div>
+        <aside class="flow">
+          <h4>What's in it</h4>
+          <ol>
+            <li><b>Docker</b><em>Custom images, private registry</em></li>
+            <li><b>Kubernetes</b><em>Manifests written by hand</em></li>
+            <li><b>Helm</b><em>Templated, environment-aware releases</em></li>
+            <li><b>GitHub Actions</b><em>Builds, then bumps the chart</em></li>
+            <li><b>ArgoCD</b><em>Continuous sync from Git</em></li>
+          </ol>
+        </aside>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>Observability with CloudWatch, Prometheus and Grafana</h3>
+          <p>Full-stack visibility across EKS workloads: CloudWatch for centralised logging and metrics from AWS services, Prometheus scraping cluster and application metrics, and Grafana dashboards covering cluster health, resource utilisation and application performance.</p>
+          <p>Dashboards on their own only help once you already suspect a problem, so the work included alerting rules that surface anomalies and performance degradation before anyone opens a dashboard.</p>
+          <div class="p-links">
+            <a href="#contact">Repository</a>
+          </div>
+        </div>
+        <aside class="flow">
+          <h4>What's in it</h4>
+          <ol>
+            <li><b>AWS CloudWatch</b><em>Centralised logs and metrics</em></li>
+            <li><b>Prometheus</b><em>Cluster and app metric scraping</em></li>
+            <li><b>Grafana</b><em>Real-time health dashboards</em></li>
+            <li><b>Alert rules</b><em>Anomaly and degradation alerts</em></li>
+          </ol>
+        </aside>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>Serverless containers on AWS Fargate</h3>
+          <p>Containerised microservices deployed on Fargate, keeping full orchestration control while removing EC2 node management entirely. Covers task definitions, service auto-scaling and load balancer integration.</p>
+          <p>Built mainly as a comparison: I ran the same style of workload on Fargate and on self-managed EKS node groups to understand where each one actually wins on cost and operational overhead. The answer depends on workload shape more than most write-ups admit.</p>
+          <div class="p-links">
+            <a href="#contact">Repository</a>
+          </div>
+        </div>
+        <aside class="flow">
+          <h4>What's in it</h4>
+          <ol>
+            <li><b>AWS Fargate</b><em>No node management</em></li>
+            <li><b>Task definitions</b><em>Service auto-scaling configured</em></li>
+            <li><b>Load balancing</b><em>ALB integration for traffic</em></li>
+            <li><b>Trade-off analysis</b><em>Fargate vs managed node groups</em></li>
+          </ol>
+        </aside>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>Cost optimisation across EKS and Fargate</h3>
+          <p>Cloud bills are an engineering problem, not a finance one. I right-sized node groups, evaluated where Spot Instances were safe to use, and set up AWS Budgets and Cost Explorer alerts so spend never drifts quietly.</p>
+          <p>Analysing utilisation data turned up idle infrastructure that could be removed without touching performance — the kind of unglamorous work that keeps a platform affordable enough to keep running.</p>
+          <div class="p-links">
+            <a href="#contact">Repository</a>
+          </div>
+        </div>
+        <aside class="flow">
+          <h4>What's in it</h4>
+          <ol>
+            <li><b>Right-sizing</b><em>Node groups matched to real load</em></li>
+            <li><b>Spot Instances</b><em>Evaluated for suitable workloads</em></li>
+            <li><b>AWS Budgets</b><em>Alerts before spend drifts</em></li>
+            <li><b>Cost Explorer</b><em>Utilisation analysis, idle cleanup</em></li>
+          </ol>
+        </aside>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <div class="sec-head">
+      <h2>Skills</h2>
+      <p>Grouped by what they're for.</p>
+    </div>
+    <div class="skills">
+      <div class="skillgroup">
+        <h4>Infrastructure as code</h4>
+        <ul>
+          <li><b>Terraform</b> — multi-cloud provisioning</li>
+          <li><b>Ansible</b> — configuration and DR playbooks</li>
+        </ul>
+      </div>
+      <div class="skillgroup">
+        <h4>Cloud platforms</h4>
+        <ul>
+          <li><b>AWS</b> — EKS, Fargate, S3, IAM, VPC</li>
+          <li><b>Azure</b> — Kubernetes, Blob Storage</li>
+          <li><b>GCP</b> — Kubernetes operations</li>
+        </ul>
+      </div>
+      <div class="skillgroup">
+        <h4>Containers &amp; orchestration</h4>
+        <ul>
+          <li><b>Kubernetes</b> — CKA certified</li>
+          <li><b>Docker</b> — images and registries</li>
+          <li><b>Helm</b> — charts and templating</li>
+        </ul>
+      </div>
+      <div class="skillgroup">
+        <h4>CI / CD</h4>
+        <ul>
+          <li><b>GitHub Actions</b> — build and release</li>
+          <li><b>Jenkins</b> — pipeline automation</li>
+          <li><b>ArgoCD</b> — GitOps delivery</li>
+        </ul>
+      </div>
+      <div class="skillgroup">
+        <h4>Monitoring &amp; logging</h4>
+        <ul>
+          <li><b>Prometheus</b> and <b>Grafana</b></li>
+          <li><b>AWS CloudWatch</b></li>
+          <li><b>Sensu</b>, <b>Splunk</b>, Syslog</li>
+        </ul>
+      </div>
+      <div class="skillgroup">
+        <h4>Resilience</h4>
+        <ul>
+          <li><b>Backup &amp; restore</b> — Blob, S3, SCP</li>
+          <li><b>Failover testing</b> — F5 load balancers</li>
+          <li><b>Blue-green upgrades</b></li>
+        </ul>
+      </div>
+      <div class="skillgroup">
+        <h4>Scripting</h4>
+        <ul>
+          <li><b>Python</b> — automation, FastAPI</li>
+          <li><b>Bash</b> — system tooling</li>
+        </ul>
+      </div>
+      <div class="skillgroup">
+        <h4>Networking &amp; security</h4>
+        <ul>
+          <li><b>TCP/IP</b>, DNS, HTTP/HTTPS</li>
+          <li><b>SSL/TLS</b>, PKI, X.509</li>
+          <li><b>IAM</b> and KMS across clouds</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="credentials" class="creds">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:0">
+        <h2>Credentials</h2>
+      </div>
+      <div class="credgrid">
+        <div>
+          <h4>Certifications</h4>
+          <ul>
+            <li><b>Certified Kubernetes Administrator</b><span>CKA — Cloud Native Computing Foundation</span></li>
+            <li><b>Fortanix Certified Administrator</b></li>
+            <li><b>Google IT Support Certificate</b></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Education</h4>
+          <ul>
+            <li><b>M.Tech, Computer Science and Engineering</b><span>PES College of Engineering, Mandya · CGPA 9.1</span></li>
+            <li><b>B.E., Computer Science and Engineering</b><span>BGS Institute of Technology, Mandya · 68%</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Open to DevOps and cloud infrastructure roles.</h2>
+      <p>Happy to walk through any of this in detail — including the parts that broke before they worked.</p>
+      <div class="contactlist">
+        <span><a href="mailto:anna.mercies2022@gmail.com">anna.mercies2022@gmail.com</a></span>
+        <span><a href="https://github.com/Annarepo">GitHub</a></span>
+        <span><a href="https://www.linkedin.com/in/annamercy">LinkedIn</a></span>
+        <span><a href="#">Résumé (PDF)</a></span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Anna Mercy</div>
+</footer>
+
+</body>
+</html>
